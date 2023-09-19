@@ -1,0 +1,68 @@
+.dschooser__wrapper {
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+    padding-top: 2em;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+.dschooser__title {
+    font-size: 1.3em;
+}
+
+.dschooser__menu {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.dschooser__chosends {
+    background-color: #eb7389;
+    color: white;
+    border-radius: 2px 2px 0px 0px;
+    padding: .5em 1em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: .5em;
+}
+
+.dschooser__caret:hover {
+    cursor: pointer
+}
+
+.dschooser__options {
+    border-top: 1px solid white;
+
+    transition: .15s ease-in;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    padding: 0em 0em 0em 0em;
+    display: flex;
+    flex-direction: column;
+    background-color: #eb7389;
+    gap: .5em;
+    width: 100%;
+    opacity: 0;
+}
+
+.dschooser__option {
+    padding: .5em 1em .5em 1em;
+}
+
+.dschooser__option:hover {
+    cursor: pointer;
+    background-color: #ef3456;
+
+}
+
+.show__options {
+    opacity: 1;
+}
