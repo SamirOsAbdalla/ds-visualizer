@@ -1,6 +1,8 @@
 .title__wrapper {
-    width: 100%;
-    padding: .5em 3em;
+    width: fit-content;
+    max-width: 80%;
+    border-bottom: 7px solid #eb7389;
+    padding: .5em 0em 0em 0em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,4 +10,5 @@
     font-weight: bold;
     color: white;
     text-align: center;
+    text-wrap: break-word;
 }
