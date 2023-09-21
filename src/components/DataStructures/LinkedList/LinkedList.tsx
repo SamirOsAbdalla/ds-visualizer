@@ -1,10 +1,12 @@
 "use client"
 import React from 'react'
-import LLToolbar from '@/components/Toolbars/LinkedListToolbar/LLToolbar'
+import Toolbar from '@/components/Toolbar/Toolbar'
 import { LinkedListClass } from '@/Classes/LinkedListClass'
 import { useEffect, useState, Fragment } from 'react'
 import "./LinkedList.css"
-import { INodeValueId } from '@/Classes/LinkedListClass'
+import { INode } from '@/Classes/LinkedListClass'
+import { counter } from '@/Classes/NodeClass'
+import DsWrapper from '@/components/DsWrapper/DsWrapper'
 
 const operationsArray: string[] = [
     "Insert Node Beginning",
@@ -12,65 +14,30 @@ const operationsArray: string[] = [
     "Insert Node End",
     "Delete Node End",
     "Insert At Position",
-    "Reverse List"
+    "Delete At Position",
+    "Update Node",
+    "Reverse List",
 ]
+
+
 let linkedList: LinkedListClass | null = new LinkedListClass()
 
 const LinkedListDS = () => {
 
+
     const [chosenOperation, setChosenOperation] = useState<string>(operationsArray[0])
-    const [nodeArray, setNodeArray] = useState<INodeValueId[]>([])
+    const [nodeArray, setNodeArray] = useState<INode[]>([])
     const [nodeColor, setNodeColor] = useState<string>("#eb7389")
     const [nodeValue, setNodeValue] = useState<string>("0")
-
+    const [insertModalStatus, setInsertModalStatus] = useState<"Open" | "Closed">("Closed")
+    const [modalId, setModalId] = useState<string>("-1")
+    const [checkedBefore, setCheckedBefore] = useState<boolean>(false)
+    const [checkedAfter, setCheckedAfter] = useState<boolean>(false)
 
     const reverseList = () => {
         let tmpNodeArr = [...nodeArray]
         setNodeArray(tmpNodeArr.reverse())
     }
-
-    const handleOperationClick = () => {
-        switch (chosenOperation) {
-            case ("Insert Node Beginning"): {
-                linkedList?.insertNodeBeginning(nodeValue)
-                break;
-            }
-            case ("Delete Node Beginning"): {
-                linkedList?.deleteNodeBeginning()
-                break;
-            }
-            case ("Insert Node End"): {
-                linkedList?.insertNodeEnd(nodeValue)
-                break;
-            }
-            case ("Delete Node End"): {
-                linkedList?.deleteNodeEnd()
-                let tmpArr = [...nodeArray]
-                tmpArr.pop()
-                setNodeArray(tmpArr)
-                return;
-
-            }
-            case ("Reverse List"): {
-                let tmpNodeArr = [...nodeArray]
-                setNodeArray(tmpNodeArr.reverse())
-                return;
-            }
-        }
-
-        getLinkedListNodes()
-    }
-
-    const resetClass = () => {
-        linkedList = null
-        linkedList = new LinkedListClass()
-        linkedList.insertNodeBeginning("2")
-        linkedList.insertNodeBeginning("1")
-        linkedList.insertNodeBeginning("0")
-
-        getLinkedListNodes()
-    }
-
     const getLinkedListNodes = () => {
         if (linkedList) {
             setNodeArray(linkedList.getNodeArray())
@@ -78,14 +45,39 @@ const LinkedListDS = () => {
 
     }
 
+    const handleOperationClick = () => {
+        switch (chosenOperation) {
+            case ("Insert Node Beginning"): {
+                const returnedNode = linkedList?.insertNodeBeginning(nodeValue, nodeColor)
+                if (returnedNode == null) {
+                    return;
+                }
+
+                const newNodeId = returnedNode.id.toString()
+
+            }
+        }
+    }
+
+    const resetClass = () => {
+        linkedList = null
+        linkedList = new LinkedListClass()
+        setNodeColor("#eb7389")
+        setNodeValue("0")
+        linkedList.insertNodeBeginning("2", "#eb7389")
+        linkedList.insertNodeBeginning("1", "#eda0ae")
+        linkedList.insertNodeBeginning("0", "#ef3456")
+        getLinkedListNodes()
+    }
 
     useEffect(() => {
         resetClass()
     }, [])
 
+
     return (
-        <div className="linkedlist__wrapper">
-            <LLToolbar
+        <DsWrapper>
+            <Toolbar
                 operationsArray={operationsArray}
                 chosenOperation={chosenOperation}
                 setChosenOperation={setChosenOperation}
@@ -105,43 +97,11 @@ const LinkedListDS = () => {
                     :
                     <></>
                 }
-                {chosenOperation == "Insert Node End" ?
-                    <button onClick={handleOperationClick} className="operation__button">
-                        Insert
-                    </button>
-                    :
-                    <></>
-                }
-                {chosenOperation == "Delete Node Beginning" ?
-                    <button onClick={handleOperationClick} className="operation__button">
-                        Delete
-                    </button>
-                    :
-                    <></>
-                }
-                {chosenOperation == "Delete Node End" ?
-                    <button onClick={handleOperationClick} className="operation__button">
-                        Delete
-                    </button>
-                    :
-                    <></>
-                }
-                {chosenOperation == "Reverse List" ?
-                    <button onClick={handleOperationClick} className="operation__button">
-                        Reverse
-                    </button>
-                    :
-                    <></>
-                }
                 <button onClick={resetClass} className="operation__button">
                     Reset
                 </button>
             </div>
-            {chosenOperation == "Insert At Position" ?
-                <span className="linkedlist__select">Select a Node</span>
-                :
-                <></>
-            }
+
             <div className="linkedlist">
                 <div className="linkedlist__head">
                     {nodeArray && nodeArray.length > 0 &&
@@ -150,26 +110,22 @@ const LinkedListDS = () => {
                             <div className="node__arrow__down">
 
                             </div>
-                        </>}
+                        </>
+                    }
                 </div>
-                <div className="linkedlist__node__container">
+                <div className="linkedlist__nodes fade">
                     {nodeArray?.map((node, index) => {
+
+                        const currentNodeId = node.nodeId.toString()
                         return (
-                            <React.Fragment key={node.nodeId}>
-                                <div
-                                    id={node.nodeId.toString()}
-                                    style={{ borderColor: nodeColor }}
-                                    className={`${chosenOperation == "Insert At Position" ? "insertnode" : ""} linkedlist__node`}>
+                            <div className="linkedlist__node" id={currentNodeId} key={node.nodeId}>
+                                <div className="node__circle">
                                     {node.nodeValue}
                                 </div>
-                                {index == nodeArray.length - 1 || nodeArray.length == 1 ?
-                                    <></>
-                                    :
-                                    <div className="node__arrow">
+                                <div className="node__arrow">
 
-                                    </div>
-                                }
-                            </React.Fragment>
+                                </div>
+                            </div>
                         )
 
 
@@ -177,7 +133,7 @@ const LinkedListDS = () => {
                     })}
                 </div>
             </div>
-        </div>
+        </DsWrapper>
     )
 }
 export default LinkedListDS

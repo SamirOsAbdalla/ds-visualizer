@@ -4,7 +4,6 @@
     flex-direction: column;
     align-items: center;
     gap: 3em;
-    padding-left: 3em;
 }
 
 .linkedlist {
@@ -14,15 +13,27 @@
     align-items: center;
 }
 
-.linkedlist__node__container {
+.linkedlist__nodes {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
 
+
 .linkedlist__node {
-    margin-right: .7em;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.linkedlist__node:last-child .node__arrow {
+    visibility: hidden;
+}
+
+.node__circle {
     width: 50px;
     height: 50px;
     display: flex;
@@ -30,7 +41,9 @@
     align-items: center;
     border: 3px solid #eb7389;
     border-radius: 50%;
-    color: white
+    color: white;
+    margin-right: 10px;
+    border: 1px solid white;
 }
 
 .node__arrow {
@@ -39,8 +52,15 @@
     width: 50px;
     height: 20px;
 
-    clip-path: polygon(0% 40%, 60% 40%, 60% 20%, 80% 50%, 60% 80%, 60% 60%, 0% 60%);
+    clip-path: polygon(0% 40%,
+            60% 40%,
+            60% 20%,
+            80% 50%,
+            60% 80%,
+            60% 60%,
+            0% 60%);
 }
+
 
 .operation__buttons {
     align-items: center;
@@ -62,7 +82,8 @@
 
 }
 
-.operation__button:hover {
+.operation__button:hover,
+.insertmodal__button:hover {
     background-color: #f34b6a;
     transform: scale(1.02);
     cursor: pointer;
@@ -94,12 +115,54 @@
     font-weight: bold;
 }
 
-.insertnode {
+.highlightnode {
     transition: 0.1s ease-out
 }
 
-.insertnode:hover {
+.highlightnode:hover {
     cursor: pointer;
     border-width: 3.5px;
     transform: scale(1.04);
+}
+
+.insert__modal {
+    background-color: white;
+    padding: 1em;
+    border: 2px solid #f34b6a;
+    border-radius: 2px;
+    gap: 3em;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    bottom: calc(100% + 1rem);
+    color: white;
+    background-color: black;
+}
+
+.insertmodal__input__container {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.insertmodal__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+}
+
+.insertmodal__button {
+    padding: .7em 1em;
+    background-color: #ef3456;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    transition: .1s ease-out;
+    box-shadow: rgba(0, 0, 0, 0) 0px 14px 28px, #8a0019 0px 3px 2px;
 }
