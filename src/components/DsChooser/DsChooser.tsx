@@ -1,17 +1,19 @@
 "use client"
 import React from 'react'
 import "./DsChooser.css"
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import OptionPicker from '../OptionPicker/OptionPicker';
 
 
-const dsArray: string[] = ["Linked List", "Heap"];
 
+interface Props {
+    chosenDataStructure: string,
+    setChosenDataStructure: Dispatch<SetStateAction<string>>,
+    dsArray: string[]
+}
 
+export default function DsChooser({ chosenDataStructure, setChosenDataStructure, dsArray }: Props) {
 
-export default function DsChooser() {
-
-    const [chosenDataStructure, setChosenDataStructure] = useState<string>("Linked List")
 
     return (
         <div className="dschooser__wrapper">
