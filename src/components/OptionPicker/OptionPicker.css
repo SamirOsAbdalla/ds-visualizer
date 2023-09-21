@@ -25,6 +25,8 @@
     flex-direction: column;
     background-color: #eb7389;
     gap: .5em;
+    max-height: 200px;
+    overflow: auto;
     width: 100%;
 }
 
@@ -33,7 +35,7 @@
 }
 
 .dschooser,
-.lltoolbar {
+.toolbar {
     opacity: 0;
 }
 
