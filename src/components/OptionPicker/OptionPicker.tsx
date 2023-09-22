@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Dispatch, SetStateAction } from "react"
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs"
 import "./OptionPicker.css"
@@ -7,27 +7,33 @@ interface Props {
     chosenOption: string,
     setChosenOption: Dispatch<SetStateAction<string>>,
     optionArray: string[],
-    optionClass: string
+    optionClass: string,
+    animationPlaying?: boolean
 }
 
 export default function OptionPicker({
     chosenOption,
     setChosenOption,
     optionArray,
-    optionClass }: Props) {
+    optionClass, animationPlaying }: Props) {
 
     const [caretOrientation, setCaretOrientation] = useState<"Up" | "Down">("Down")
 
     const orientCaret = () => {
+
         if (caretOrientation == "Up") {
             setCaretOrientation("Down")
         } else {
             setCaretOrientation("Up")
         }
     }
-    const handleCaretClick = () => {
 
+    const handleCaretClick = () => {
         const dsOptions = document.querySelector(`.${optionClass}`)
+        if (animationPlaying == true) {
+            return;
+        }
+
         orientCaret()
         dsOptions?.classList.toggle("show__options")
     }
@@ -43,6 +49,13 @@ export default function OptionPicker({
 
     }
 
+    useEffect(() => {
+        const dsOptions = document.querySelector(`.${optionClass}`)
+        dsOptions?.classList.remove("show__options")
+
+        setCaretOrientation("Down")
+    }, [animationPlaying])
+
     return (
         <div>
             <div className={`optionpicker__chosends`}>
@@ -55,6 +68,7 @@ export default function OptionPicker({
                     <BsFillCaretUpFill className="optionpicker__caret" onClick={handleCaretClick} />
                 }
             </div>
+
             <div className={`${optionClass} optionpicker__options`}>
                 {optionArray.map((ds: string) =>
                     <div className="optionpicker__option" onClick={handleOptionClick} id={ds} key={ds}>

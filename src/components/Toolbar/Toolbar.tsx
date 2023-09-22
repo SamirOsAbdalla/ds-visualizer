@@ -11,13 +11,14 @@ interface Props {
     nodeValue: string,
     setNodeValue: Dispatch<SetStateAction<string>>,
     operationsArray: string[],
+    animationPlaying?: boolean
 }
 
 const Toolbar = ({
     chosenOperation, setChosenOperation,
     operationsArray, nodeColor,
     setNodeColor, nodeValue,
-    setNodeValue }: Props) => {
+    setNodeValue, animationPlaying }: Props) => {
 
     return (
         <div className="toolbar__wrapper">
@@ -31,6 +32,7 @@ const Toolbar = ({
                         setChosenOption={setChosenOperation}
                         optionArray={operationsArray}
                         optionClass="toolbar"
+                        animationPlaying={animationPlaying}
                     />
                 </div>
             </section>
