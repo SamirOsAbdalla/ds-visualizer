@@ -47,7 +47,8 @@
 }
 
 .node__arrow {
-
+    position: relative;
+    transition: 0.1s ease-out;
     background-color: white;
     width: 50px;
     height: 20px;
@@ -89,11 +90,19 @@
     cursor: pointer;
 }
 
-.linkedlist__head {
+.linkedlist__head,
+.linkedlist__next {
     position: relative;
     padding-left: .4em;
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+}
+
+.linkedlist__top {
+    position: relative;
+    display: flex;
+    gap: 65px;
     align-self: flex-start;
 }
 
@@ -121,6 +130,7 @@
 }
 
 .linkedlist__head span,
+.linkedlist__next span,
 .linkedlist__p span,
 .linkedlist__ine__curp span,
 .linkedlist__dne {
@@ -248,7 +258,7 @@
 .linkedlist__text {
     padding-top: 3em;
     padding-bottom: 2em;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     text-align: left;
     width: 60%;
@@ -266,4 +276,20 @@
     background-color: #fb9bac;
     box-shadow: rgba(0, 0, 0, 0) 0px 14px 28px, #f38398 0px 3px 2px;
     transform: none
+}
+
+.operation__text {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nodehover {
+    transition: 0.1s ease-out
+}
+
+.nodehover:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    border-width: 3.5px;
 }
