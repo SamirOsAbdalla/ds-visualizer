@@ -8,24 +8,25 @@ export interface INode {
 }
 
 interface ILinkedList {
-    insertNodeBeginning(_newValue: string, _newColor: string): NodeClass | null
-    insertNodeEnd(_newValue: string, _newColor: string): void
-    insertNodeAtPosition(node: INode, beforeOrAfter: "Before" | "After"): void
+    insertNodeBeginning(_newValue: string, _newColor: string): INode | null
+    insertNodeEnd(_newValue: string, _newColor: string): INode | null
+    insertNodeAtPosition(node: INode, beforeOrAfter: "Before" | "After"): INode | null
     deleteNodeBeginning(): void
     deleteNodeEnd(): void
     deleteNodeAtPosition(nodeId: number): void
+    reverseList(): void
     updateNode(currentNodeId: number, newColor: string, newValue: string): void
     printValues(): void
 }
 
-export class LinkedListClass implements ILinkedList {
+export class LinkedList implements ILinkedList {
     private head: NodeClass | null = null
 
-    public maxSize: number = 11
+    public maxSize: number = 8
     public listSize: number = 0
 
     //INSERT=========================================================================
-    public insertNodeBeginning(_newValue: string, _newColor: string): NodeClass | null {
+    public insertNodeBeginning(_newValue: string, _newColor: string): INode | null {
 
 
         if (this.listSize > this.maxSize) {
@@ -41,13 +42,19 @@ export class LinkedListClass implements ILinkedList {
             newNode.next = this.head
             this.head = newNode
         }
-        return newNode
+
+        let returnNode: INode = {
+            nodeValue: _newValue,
+            nodeId: newNode.id,
+            nodeColor: _newColor
+        }
+        return returnNode
 
     }
 
-    public insertNodeEnd(_newValue: string, _newColor: string): void {
+    public insertNodeEnd(_newValue: string, _newColor: string): INode | null {
         if (this.listSize > this.maxSize) {
-            return
+            return null
         }
         this.listSize++;
         const newNode = new NodeClass(_newValue, _newColor)
@@ -63,15 +70,31 @@ export class LinkedListClass implements ILinkedList {
             currentNode.next = newNode
         }
 
+        return {
+            nodeValue: _newValue,
+            nodeId: newNode.id,
+            nodeColor: _newColor
+        }
+
     }
 
-    public insertNodeAtPosition(node: INode, beforeOrAfter: "Before" | "After"): void {
+    public insertNodeAtPosition(node: INode, beforeOrAfter: "Before" | "After"): INode | null {
+
+        if (this.listSize > this.maxSize) {
+            return null
+        }
 
         this.listSize++
         let newNode = new NodeClass(node.nodeValue, node.nodeColor)
+
+        let returnNode: INode = {
+            nodeColor: node.nodeColor,
+            nodeValue: node.nodeValue,
+            nodeId: newNode.id
+        }
         if (!this.head) {
             this.head = newNode
-            return;
+            return returnNode;
         }
 
         if (beforeOrAfter == "Before") {
@@ -79,7 +102,7 @@ export class LinkedListClass implements ILinkedList {
                 let tmpPtr = this.head
                 this.head = newNode
                 newNode.next = tmpPtr
-                return
+                return returnNode
             }
 
             let prevPtr: NodeClass | null = this.head
@@ -95,7 +118,7 @@ export class LinkedListClass implements ILinkedList {
                 newNode.next = curPtr
             }
 
-            return
+            return returnNode
         }
 
         let iter: NodeClass | null = this.head
@@ -107,7 +130,7 @@ export class LinkedListClass implements ILinkedList {
             iter.next = newNode
             newNode.next = tmpNext
         }
-
+        return returnNode
     }
     //=================================================================================
 
@@ -170,8 +193,27 @@ export class LinkedListClass implements ILinkedList {
     }
     //==================================================================================
 
+    public reverseList(): void {
+
+        if (this.head) {
+            let prevPtr: NodeClass | null = null
+            let curPtr: NodeClass | null = this.head
+
+            while (curPtr) {
+                let tmpNext: NodeClass | null = curPtr.next
+                curPtr.next = prevPtr
+                prevPtr = curPtr
+                curPtr = tmpNext
+            }
+            this.head = prevPtr
+
+        }
+        return;
+
+    }
     public updateNode(currentNodeId: number, newColor: string, newValue: string): void {
         let curPtr = this.head
+
         while (curPtr && curPtr.id != currentNodeId) {
             curPtr = curPtr.next
         }

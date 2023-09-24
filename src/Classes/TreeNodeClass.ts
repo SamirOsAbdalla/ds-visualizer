@@ -1,10 +1,12 @@
 
 
 
-export let counter = 0;
-export class NodeClass {
+export let treeCounter = 0;
+export class TreeNodeClass {
 
-    public next: NodeClass | null = null
+    public left: TreeNodeClass | null = null
+    public right: TreeNodeClass | null = null
+
     public value: string = "0"
     public id: number = 0
     public color: string = ""
@@ -12,7 +14,7 @@ export class NodeClass {
     constructor(_value: string, _color: string) {
         this.value = _value;
         this.color = _color
-        this.id = counter++
+        this.id = treeCounter++
     }
 
 }
