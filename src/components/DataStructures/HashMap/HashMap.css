@@ -15,6 +15,8 @@
     gap: 2em;
     font-size: 12px;
     justify-content: center;
+
+    transition: 0.2s ease-out;
 }
 
 .hashmap__node__key,
@@ -23,4 +25,73 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+}
+
+.hashing__animation__text__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+.hashing__animation__collision {
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+}
+
+.hash__function__text__container {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.show__collision {
+    display: none;
+}
+
+.show__text {
+    display: none;
+}
+
+.hash__text {
+    padding-top: 3em;
+    color: white;
+    padding-bottom: 2em;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    width: 60%;
+    color: white;
+    word-spacing: 4px;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.hashmap__erase {
+    padding-top: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.hashmap__erase span {
+    color: white;
+    font-weight: bold;
+}
+
+.hashmap__erase input {
+    padding: .5em 1em;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    max-width: 100px;
 }
