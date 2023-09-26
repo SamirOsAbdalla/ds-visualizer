@@ -12,4 +12,4 @@ the purpose of certain data structures is as well as some of the possible operat
 
 ## Live Site URL
 
-[https://ds-visualizer-jade.vercel.app/]
+https://ds-visualizer-jade.vercel.app/
