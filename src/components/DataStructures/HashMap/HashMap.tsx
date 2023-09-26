@@ -225,9 +225,9 @@ const HashMapDS = () => {
                         in a hash map is implementation defined i.e. the designer of the hash map in use can choose how
                         to handle them.<br /><br />
 
-                        The key in this example is restricted to a string for simplicity's sake,
+                        The key in this example is restricted to a string for simplicity&apos;s sake,
                         but the the key can be anything the current language supports  which could range from
-                        integers to trees to even other hash maps (that's a lot of space).
+                        integers to trees to even other hash maps (that&apos;s a lot of space).
                     </>
                 )
             }

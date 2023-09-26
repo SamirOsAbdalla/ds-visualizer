@@ -212,11 +212,11 @@ const MinHeapDs = () => {
 
                         As you may have noticed, a min heap is traditionally represented as an
                         array, where the left and right child nodes of a parent node whose
-                        position is at index  "i" are at positions 2*i+1 and 2*i+2 in the array respectively.
+                        position is at index  &quot;i&quot; are at positions 2*i+1 and 2*i+2 in the array respectively.
                         <br /><br />
 
                         When a new node is inserted into the heap, that node must be checked against
-                        its parent node to ensure that the parent node's value is still in fact smaller
+                        its parent node to ensure that the parent node&apos;s value is still in fact smaller
                         than the child node. If not, a swap operation takes place until the array
                         once again satisfies the conditions of a min heap.
                     </>
