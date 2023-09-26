@@ -8,7 +8,7 @@ import LinkedListDs from '@/components/DataStructures/LinkedList/LinkedList'
 import MinHeapDs from "@/components/DataStructures/MinHeap/MinHeap"
 import HashMapDS from "@/components/DataStructures/HashMap/HashMap"
 
-const dsArray: string[] = ["Linked List", "HashMap", "Min Heap"];
+const dsArray: string[] = ["Linked List", "HashMap", "MinHeap"];
 
 export default function Home() {
 
@@ -27,7 +27,7 @@ export default function Home() {
         :
         <></>
       }
-      {chosenDataStructure == "Min Heap" ?
+      {chosenDataStructure == "MinHeap" ?
         <MinHeapDs />
         :
         <></>
