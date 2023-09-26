@@ -25,6 +25,91 @@
     margin-bottom: 3em;
 }
 
+.heapnode__circle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    border: 3px solid;
+}
+
+.minheap__tree__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heapnodearrow__container {
+    width: 100%;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heapnode__container {
+    position: relative;
+    width: 250px;
+    height: 100px;
+    justify-content: center;
+    display: flex;
+}
+
+.heapnode__arrow {
+    position: relative;
+    background-color: white;
+    width: 100px;
+    height: 20px;
+}
+
+.heapnodearrow__left {
+
+    clip-path: polygon(100% 50%,
+            10% 50%,
+            10% 10%,
+            0% 55%,
+            10% 90%,
+            10% 60%,
+            100% 60%);
+
+}
+
+.heapnodearrow__right {
+
+    clip-path: polygon(0% 50%,
+            90% 50%,
+            90% 10%,
+            100% 55%,
+            90% 90%,
+            90% 60%,
+            0% 60%);
+}
+
+.minheap__text {
+    padding-bottom: 2em;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    width: 60%;
+    color: white;
+    word-spacing: 4px;
+}
+
+.node__hover {
+    transition: 0.2s ease-out;
+}
+
+.node__hover:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    border-width: 4px;
+}
+
 /* .minheap__tree {
     display: flex;
     justify-content: center;

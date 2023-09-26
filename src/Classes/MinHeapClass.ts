@@ -4,7 +4,7 @@ import { TreeNodeClass } from "./TreeNodeClass"
 interface IMinHeap {
     heapify(): void
     getMinheap(): INode[]
-    insertNode(_newValue: string, _newColor: string): void
+    insertNode(_newValue: string, _newColor: string): INode | null
 }
 
 
@@ -13,7 +13,7 @@ export class MinHeap implements IMinHeap {
 
     private minHeap: INode[] = []
 
-    public maxHeapSize: number = 15
+    public maxHeapSize: number = 7
     public heapSize: number = 0
     public x: number = 0;
     public y: number = 0;
@@ -39,10 +39,10 @@ export class MinHeap implements IMinHeap {
     }
     //INSERT================================================================
 
-    public insertNode(_newValue: string, _newColor: string): void {
+    public insertNode(_newValue: string, _newColor: string): INode | null {
 
-        if (this.heapSize > this.maxHeapSize) {
-            return;
+        if (this.heapSize >= this.maxHeapSize) {
+            return null;
         }
 
         let newNode: INode = { nodeColor: _newColor, nodeId: minHeapCounter, nodeValue: _newValue }
@@ -51,6 +51,8 @@ export class MinHeap implements IMinHeap {
 
         this.heapify()
         minHeapCounter++;
+
+        return newNode
     }
 
     //======================================================================
